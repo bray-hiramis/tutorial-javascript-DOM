@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM - Event Listener Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: sans-serif;
+            background: linear-gradient(180deg, #444, rgb(5, 5, 27)) no-repeat center;
+            color: beige;
+            height: 100vh;
+            
+        }
+
+        /* main style */
+
+        .container {
+            display: flex;
+            max-width: 1280px;
+        }
+
+        #main-heading {
+            font-size: 6rem;
+            margin-bottom: 3rem;
+        }
+
+        .boxes {
+            border: 2px solid beige;
+            background: none;
+            color: beige;
+            border-radius: 10px;
+            font-size: 3.5rem;
+            padding: 5rem;
+            text-align: center;
+            margin: 1rem;
+            transition: all .3s ease-out;
+            /* height: 400px; */
+        }
+
+        .boxes:first-child:hover {
+            cursor: pointer;
+            border-color: tomato;
+            color: tomato;
+        }
+
+        .hidden-content {
+            display: none;
+        }
+
+        .visible-content{
+            display: block;
+        }
+        
+    </style>
+</head>
+
+<body>
+    
+    <h1 id="main-heading">Event Listener</h1>
+
+    <div class="container">
+        <button class="reveal-btn boxes">Reveal More</button>
+
+        <div class="hidden-content boxes">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem sunt laboriosam deleniti perferendis debitis molestias deserunt quod aliquam? Quibusdam impedit velit mollitia facere. Inventore, iste molestiae soluta architecto magnam rem!
+        </div>
+    </div>
+
+    <script>
+        // calling class="reveal-btn"
+        const revealBtn = document.querySelector('.reveal-btn');
+
+        // calling class="hidden-content"
+        const hiddenContent = document.querySelector('.hidden-content');
+
+        // callback function
+        function revealContent() {
+            if (hiddenContent.classList.contains('visible-content')) {
+                // this block hides the class="hidden-content"
+                hiddenContent.classList.remove('visible-content'); 
+            } else {
+                // this block shows the class="hidden-content"
+                hiddenContent.classList.add('visible-content');
+            }
+            // The visible-content class is added in the CSS rules
+        }
+
+        // syntax: element.addEventListener("click", function);
+        revealBtn.addEventListener("click", revealContent);
+    </script>
+
+</body>
+</html>

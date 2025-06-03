@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Master DOM Manipulation: Part 1</title>
+
+        <style>
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Global styles */
+            html {
+                font-size: 10px;
+            }
+
+            body {
+                font-family: sans-serif;
+                background: linear-gradient(180deg, #444, rgb(5, 5, 27)) no-repeat center;
+                color: beige;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #main-heading {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+            }
+
+            p, li {
+                font-size: 1.8rem;
+            }
+
+            li {
+                list-style: none;
+            }
+
+            /* container */
+            .container {
+                border: 2px solid beige;
+                border-radius: 10px;
+                max-width: 650px;
+                text-align: center;
+                padding: 4rem;
+            }
+
+            /* Main style */
+            .list-items {
+                background-color: beige;
+                color: #444;
+                padding: 20px 0;
+                font-size: 2rem;
+                margin-bottom: 5px;
+            }
+            .list-items:last-child {
+                margin-bottom: 0;
+            }
+
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1 id="main-heading">Favorite Movie Franchise</h1>
+            <ul>
+                <li class="list-items"><span>Neo</span>
+                    The Matrix</li>
+                <li class="list-items">Star Wars</li>
+                <li class="list-items">Harry Potter</li>
+                <li class="list-items">Lord of the Rings</li>
+                <li class="list-items">Marvel</li>
+            </ul>
+        </div>
+
+        <script>
+            // 
+            const title = document.querySelector('#main-heading');
+            title.style.color = 'red'; // inline styling
+
+            // 
+            const listItems = document.querySelectorAll('.list-items');
+            // Loop version 1
+            /* for (let i = 0; i < listItems.length; i++) {
+                listItems[i].style.fontSize = '40px';
+            } */
+            // Loop version 2
+            for (let list of listItems) {
+                list.style.fontSize = '40px';
+            }
+        </script>
+    </body>
+    
+</html>
