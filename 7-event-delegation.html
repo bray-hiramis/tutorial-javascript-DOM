@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DOM - Event Delegation</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                font-size: 10px;
+            }
+
+            body {
+                font-family: sans-serif;
+                background: linear-gradient(180deg, #212020, rgb(60, 78, 118)) no-repeat center/cover;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: beige;
+            }
+
+            li {
+                cursor: pointer;
+                list-style: none;
+                font-size: 4rem;
+                padding: 10px;
+                border: 2px solid beige;
+                width: 100%;
+                text-align: center;
+                border-radius: 10px;
+            }
+
+            #sports {
+                min-height: 400px;
+                min-width: 350px;
+                border: 5px solid beige;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                border-radius: 10px;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        
+        <ul id="sports">
+            <li id="football">Football</li>
+            <li id="basketball">Basketball</li>
+            <li id="boxing">Boxing</li>
+            <li id="tennis">Tennis</li>
+            <li id="golf">Golf</li>
+        </ul>
+
+        <script>
+            document.querySelector("#sports").addEventListener("click", function(e) {
+                console.log(e.target.getAttribute("id") + " is clicked!");
+
+                const target = e.target;
+                if (target.matches('li')) {
+                    target.style.backgroundColor = "tomato"
+                }
+            });
+
+            // adding a new List item
+            const sports = document.querySelector("#sports");
+            const newSport = document.createElement("li");
+
+            newSport.innerText = "Rugby";
+            newSport.setAttribute("id", "rugby");
+
+            sports.appendChild(newSport);
+
+            /* document.querySelector("#football").addEventListener("click", function(e) {
+                console.log("Football is clicked!");
+
+                const target = e.target;
+
+                if (target.matches('li')) {
+                    target.style.backgroundColor = "lightgray"
+                }
+            })
+
+            document.querySelector("#basketball").addEventListener("click", function(e) {
+                console.log("Basketball is clicked!");
+
+                const target = e.target;
+
+                if (target.matches('li')) {
+                    target.style.backgroundColor = "lightgray"
+                }
+            })
+
+            document.querySelector("#boxing").addEventListener("click", function(e) {
+                console.log("Boxing is clicked!");
+
+                const target = e.target;
+
+                if (target.matches('li')) {
+                    target.style.backgroundColor = "lightgray"
+                }
+            })
+
+            document.querySelector("#tennis").addEventListener("click", function(e) {
+                console.log("Tennis is clicked!");
+
+                const target = e.target;
+
+                if (target.matches('li')) {
+                    target.style.backgroundColor = "lightgray"
+                }
+            })
+
+            document.querySelector("#golf").addEventListener("click", function(e) {
+                console.log("Golf is clicked!");
+
+                const target = e.target;
+
+                if (target.matches('li')) {
+                    target.style.backgroundColor = "lightgray"
+                }
+            }) */
+        </script>
+    </body>
+</html>
