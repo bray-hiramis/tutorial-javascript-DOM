@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1: Quote Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+
+        * { 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            height: 100vh;
+            position: relative;
+            background-color: #000;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        body::before {
+            content: '';
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background: url('https://images.pexels.com/photos/32398191/pexels-photo-32398191/free-photo-of-aerial-view-of-misty-landscape-in-sri-lanka.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center/cover;
+            opacity: 0.9;
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        .header {
+            background-color: #333;
+            border: 2px beige solid;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .header h2 {
+            font-size: 3rem;
+            color: beige;
+            padding: 15px 30px;
+        }
+
+        .main-content {
+            background-color: beige;
+            border: #333 solid 2px;
+            border-radius: 10px;
+            font-size: 2.5rem;
+            min-height: 400px;
+            width: 650px;
+            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 4px 4px #000;
+        }
+
+        .text-area {
+            margin: 2rem 0;
+            line-height: 1.6;
+        }
+
+        .person {
+            color: tomato;
+            text-transform: uppercase;
+        }
+
+        #new-quote {
+            cursor: pointer;
+            padding: 1.5rem 2.8rem;
+            margin: 2rem 0;
+            font-size: 2rem;
+            border-radius: 1rem;
+            border: 2px lightseagreen solid;
+            box-shadow: 0 4px 4px #333;
+            font-weight: 900;
+            transition: all 0.1s ease-out;
+        }
+
+        #new-quote:active {
+            transform: scale(0.9);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- project 1: Quote Generator -->
+    
+    <div class="container">
+        <div class="header">
+            <h2>JavaScript Quote Generator</h2>
+        </div>
+
+        <div class="main-content">
+            <div class="text-area">
+                <q><span class="quote">If you can dream it, you can do it.</span></q>
+            </div>
+            <div class="person">- Walt Disney</div>
+            <div class="button-area">
+                <button id="new-quote">New Quote</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // global variables
+        let btn = document.querySelector('#new-quote');
+        let quote = document.querySelector('.quote');
+        let person = document.querySelector('.person');
+
+        // array of quotes
+        const quotes = [
+            {
+                quote: 'The unexamined life is not worth living.',
+                person: '- Socrates'
+            },
+            {
+                quote: 'Be the change that you wish to see in the world.',
+                person: '- Mahatma Gandhi'
+            },
+            {
+                quote: 'Ask not what your country can do for you, ask what you can do for your country.',
+                person: '- John F. Kennedy'
+            },
+            {
+                quote: 'Power tends to corrupt, and absolute power corrupts absolutely.',
+                person: '- Lord Acton'
+            },
+            {
+                quote: 'The future belongs to those who believe in the beauty of their dreams.',
+                person: '- Eleanor Roosevelt'
+            },
+            {
+                quote: 'If you can dream it, you can do it.',
+                person: '- Walt Disney'
+            },
+        ]
+
+        // Code to get a random quotes
+        btn.addEventListener("click", function() {
+            let randomIndex = Math.floor(Math.random() * quotes.length);
+            console.log(randomIndex);
+            
+            let randomQuoteObject = quotes[randomIndex];
+            console.log(randomQuoteObject.quote);
+
+            quote.innerText = randomQuoteObject.quote;
+            person.innerText = randomQuoteObject.person;
+        });
+
+    </script>
+</body>
+</html>
