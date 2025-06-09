@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - Modal</title>
+    <style>
+        body {
+            background: url('https://images.pexels.com/photos/2609107/pexels-photo-2609107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat top center/cover;
+            height: 100vh;
+            /* position: relative; */
+        }
+
+        #open-btn {
+            position: absolute;
+            top: 70%;
+            left: 10%;
+            width: 350px;
+            font-size: 2rem;
+            background: transparent;
+            color: #fff;
+            border: solid 2px #fff;
+            border-radius: 10px;
+            padding: 5px;
+            box-shadow: 0 0 3px black;
+            transition: all .3s ease;
+        }
+
+        #open-btn:hover {
+            cursor: pointer;
+            background-color: #fff;
+            color: #222;
+        }
+
+        #modal {
+            background-color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid blue;
+
+            animation: animateModal .4s ;
+        }
+
+        #close-btn {
+            font-size: 3rem;
+        }
+
+        #close-btn:hover {
+            cursor: pointer;
+            font-size: 3rem;
+            color: #ff0000;
+        }
+
+        #modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: rgb(0, 0, 0, 0.2);
+        }
+
+        @keyframes animateModal {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+            to {
+                top: 50%;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <button id="open-btn">
+        <p>Where's Our Modal</p>
+    </button>
+
+    <div id="modal-container">
+        <div id="modal">
+            <p>THIS IS A MODAL!</p>
+            <div id="close-btn">&times;</div>
+        </div>
+    </div>
+
+
+    <script>
+        // variables
+        let openBtn = document.getElementById('open-btn');
+        let modalContainer = document.getElementById('modal-container');
+        let closeBtn = document.getElementById('close-btn');
+
+        // event listeners
+
+        // opening the modal
+        openBtn.addEventListener('click', function() {
+            modalContainer.style.display = 'block';
+        });
+
+        // closing the modal
+        closeBtn.addEventListener('click', function() {
+            modalContainer.style.display = 'none';
+        })
+
+        // click anywhere on the screen to close the modal
+        this.window.addEventListener('click', function(e) {
+            if (e.target === modalContainer) {
+                modalContainer.style.display = 'none';
+            }
+        })
+    </script>
+</body>
+</html>
