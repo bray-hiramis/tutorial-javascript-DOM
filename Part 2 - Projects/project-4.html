@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 4: Stop Watch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #f2f2f2;
+            min-width: 30%;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #timer {
+            font-size: 6rem;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            cursor: pointer;
+            margin: 0 10px;
+            border: none;
+        }
+
+        button i {
+            font-size: 2rem;
+            padding: 10px;
+            color: #fff;
+            width: 50px;
+        }
+
+        #play {
+            background-color: green;
+        }
+        #pause {
+            background-color: orange;
+        }
+        #reset {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div id="timer">
+            00:00:00
+        </div>
+        <div class="buttons">
+            <button id="startStopBtn">
+                <i class="fa-solid fa-play" id="play"></i>
+            </button>
+
+            <button id="resetBtn">
+                <i class="fa-solid fa-arrow-rotate-left" id="reset"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // variables for buttons
+        const startStopBtn = document.querySelector('#startStopBtn');
+        const resetBtn = document.querySelector('#resetBtn');
+
+        // variables for time values
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+
+        // variables for leading 0
+        let leadingSeconds = 0;
+        let leadingMinutes = 0;
+        let leadingHours = 0;
+
+        // variables for set interval and timer status
+        let timerInterval = null;
+        let timerStatus = 'stopped';
+
+        // stopwatch function
+        function stopWatch() {
+            seconds++;
+
+            if (seconds / 60 === 1) {
+                seconds = 0;
+                minutes++;
+
+                if (minutes / 60 === 1) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+
+            if (seconds < 10) {
+                leadingSeconds = "0" + seconds.toString();
+            } else {
+                leadingSeconds = seconds;
+            }
+
+            if (minutes < 10) {
+                leadingMinutes = "0" + minutes.toString();
+            } else {
+                leadingMinutes = minutes;
+            }
+
+            if (hours < 10) {
+                leadingHours = "0" + hours.toString();
+            } else {
+                leadingHours = hours;
+            }
+
+            let displayTimer = document.getElementById('timer').innerText = leadingHours + ":" + leadingMinutes + ":" + leadingSeconds;
+        }
+
+        // Code for the Start and Stop timer
+        startStopBtn.addEventListener('click', function() {
+            if (timerStatus === 'stopped') {
+                timerInterval = window.setInterval(stopWatch, 1000);
+                document.getElementById('startStopBtn').innerHTML = `<i class="fa-solid fa-pause" id="pause"></i>`;
+                timerStatus = "started";
+            } else {
+                window.clearInterval(timerInterval);
+                document.getElementById('startStopBtn').innerHTML = `<i class="fa-solid fa-play" id="play"></i>`;
+                timerStatus = "stopped";
+            }
+        })
+
+        // Code for reset button
+        resetBtn.addEventListener('click', function() {
+            window.clearInterval(timerInterval);
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            document.getElementById('timer').innerHTML = "00:00:00";
+        })
+
+    </script>
+</body>
+</html>

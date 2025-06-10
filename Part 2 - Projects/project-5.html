@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 5 - To Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+
+        body {
+            height: 100vh;
+            background: linear-gradient(45deg,rgba(155, 42, 129, 1) 0%, rgba(199, 102, 87, 1) 50%, rgba(237, 221, 83, 1) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #add-task-container {
+            width: 350px;
+            padding: 30px 20px;
+            background-color: #f2f2f2;
+            border-radius: 20px;
+            box-shadow: 0 0 30px;
+            display: flex;
+        }
+
+        input {
+            flex:1;
+            margin-right: 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            padding: 10px;
+            border: 2px solid tomato;
+        }
+        input:focus {
+            border: 2px solid transparent;
+            outline: 2px solid limegreen;
+        }
+
+        #add-task {
+            font-size: 1.2rem;
+            padding: 10px;
+            flex: 1;
+            background-color: #f2f2f2;
+            color: green;
+            border: green 2px solid;
+            transition: .3s ease;
+            border-radius: 10px;
+        }
+        
+        #add-task:hover {
+            cursor: pointer;
+            background-color: green;
+            color: #f2f2f2;
+        }
+
+        /* styling for new tasks */
+        .task {
+            max-width: 100%;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            box-shadow: 0 0 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding: 30px 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task li {
+            list-style: none;
+            font-size: 1.5rem;
+            flex: 4;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        .task button {
+            cursor: pointer;
+            flex: 1;
+            border-radius: 10px;
+            background-color: #f2f2f2;
+        }
+
+        .task .checkTask {
+            color: limegreen;
+            margin-right: 5px;
+            border: solid 2px limegreen;
+            font-size: 1.5rem;
+            transition: .3s;
+        }
+        .task .checkTask:hover {
+            background-color: limegreen;
+            color: #f2f2f2;
+        }
+
+        .task .deleteTask {
+            color: red;
+            margin-right: 5px;
+            border: solid 2px red;
+            font-size: 1.5rem;
+            transition: .3s;
+        }
+        .task .deleteTask:hover {
+            background-color: red;
+            color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div id="add-task-container">
+            <input type="text" placeholder="Enter your task" id="input-task">
+            <button id="add-task"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
+        <div id="task-container">
+
+        </div>
+    </div>
+
+    <script>
+
+        // variables
+        const addTask = document.getElementById('add-task');
+        const taskContainer = document.getElementById('task-container');
+        const inputTask = document.getElementById('input-task');
+
+        // Event listener for Add button
+        addTask.addEventListener('click', function() {
+            let task = document.createElement('div');
+            task.classList.add('task');
+
+            let li = document.createElement('li');
+            li.innerText = `${inputTask.value}`;
+            task.appendChild(li);
+
+            let checkButton = document.createElement('button');
+            checkButton.innerHTML = `<i class="fa-solid fa-check"></i>`;
+            checkButton.classList.add('checkTask');
+            task.appendChild(checkButton);
+
+            let deleteButton = document.createElement('button');
+            deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+            deleteButton.classList.add('deleteTask');
+            task.appendChild(deleteButton);
+
+            if (inputTask.value === "") {
+                alert("Please enter a task");
+            } else {
+                taskContainer.appendChild(task);
+            }
+
+            inputTask.value = ""; // This will reset the text inside the main input text
+
+            // code to apply a line through when task is checked or done
+            checkButton.addEventListener('click', function() {
+                checkButton.parentElement.style.textDecoration = 'line-through'; // traversing the DOM       
+            })
+
+            // code to remove the task on the list
+            deleteButton.addEventListener('click', function(e) {
+                let target = e.target;
+                target.parentElement.parentElement.remove(); // traversing the DOM
+            })
+
+        })
+
+    </script>
+</body>
+</html>
