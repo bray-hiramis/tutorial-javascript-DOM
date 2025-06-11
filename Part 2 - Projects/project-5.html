@@ -9,7 +9,7 @@
 
         body {
             height: 100vh;
-            background: linear-gradient(45deg,rgba(155, 42, 129, 1) 0%, rgba(199, 102, 87, 1) 50%, rgba(237, 221, 83, 1) 100%);
+            background: linear-gradient(45deg,rgba(155, 42, 129, 1) 0%, rgba(199, 102, 87, 1) 50%, rgba(237, 221, 83, 1) 100%) no-repeat center center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -151,22 +151,22 @@
                 alert("Please enter a task");
             } else {
                 taskContainer.appendChild(task);
-            }
+            };
 
             inputTask.value = ""; // This will reset the text inside the main input text
 
             // code to apply a line through when task is checked or done
             checkButton.addEventListener('click', function() {
                 checkButton.parentElement.style.textDecoration = 'line-through'; // traversing the DOM       
-            })
+            });
 
             // code to remove the task on the list
             deleteButton.addEventListener('click', function(e) {
                 let target = e.target;
-                target.parentElement.parentElement.remove(); // traversing the DOM
-            })
+                e.currentTarget.parentElement.remove(); // traversing the DOM
+            });
 
-        })
+        });
 
     </script>
 </body>
